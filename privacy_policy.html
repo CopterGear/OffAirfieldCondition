@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>プライバシーポリシー | OffAirfield Condition</title>
+<meta name="description" content="OffAirfield Condition(場外状況)のプライバシーポリシー">
+<style>
+:root{
+  --ink:#16263d; --muted:#53627a; --paper:#f5f7fa; --panel:#ffffff;
+  --line:#d5dce6; --accent:#1d5f94; --mark:#fff3c4;
+  --font:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#e6ecf5; --muted:#9fb0c7; --paper:#0f1826; --panel:#16233a; --line:#2a3a55; --accent:#7db7e8; --mark:#5a4a12;}
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);line-height:1.85;font-size:16px;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+header{background:var(--ink);color:var(--paper);padding:44px 20px 36px}
+@media (prefers-color-scheme:dark){header{background:#0a111d;color:#e6ecf5;border-bottom:1px solid var(--line)}}
+.wrap{max-width:720px;margin:0 auto}
+header p{margin:0 0 6px;font-size:.9rem;opacity:.8}
+h1{margin:0;font-size:1.7rem;line-height:1.35;font-weight:700}
+main{padding:32px 20px 56px}
+.lead{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);padding:16px 18px;border-radius:6px;margin:0 0 36px}
+h2{font-size:1.15rem;margin:40px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:1rem;margin:22px 0 4px}
+p,li{max-width:40em}
+ul{padding-left:1.3em}
+li{margin:4px 0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ph{background:var(--mark);padding:0 4px;border-radius:3px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:var(--panel)}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{font-weight:600;background:color-mix(in srgb,var(--accent) 10%,var(--panel))}
+.scroll{overflow-x:auto}
+footer{padding:0 20px 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p>場外状況</p>
+    <h1>プライバシーポリシー</h1>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<p class="lead">場外状況(以下「本アプリ」)は、アカウント登録を必要とせず、開発者のサーバーに利用者の情報を集めない設計です。このページでは、本アプリがどのような情報を扱い、どこへ送信するかを説明します。</p>
+
+<h2>1. 本アプリが扱う情報</h2>
+
+<h3>位置情報(緯度・経度)</h3>
+<p>利用者が地図をタップするか座標を入力して指定した地点の緯度・経度を、標高と気象データの取得に使用します。地図の「現在地」ボタンを使用した場合に限り、端末の位置情報の利用許可が求められます。許可しなくても、地図や座標入力による地点指定で本アプリを利用できます。</p>
+
+<h3>登録地点</h3>
+<p>利用者が「名前を付けて保存」した地点の名前、緯度・経度、標高は、利用者の端末内に保存されます。ホーム画面ウィジェットに同じ地点を表示するため、本アプリとウィジェットの間で共有されます。</p>
+
+<h3>離着陸の入力内容</h3>
+<p>離陸・着陸の地点と時刻は、計算のために一時的に使用します。開発者には送信されません。</p>
+
+<h2>2. 利用目的</h2>
+<ul>
+  <li>地点の標高、気象データを取得し、気圧高度・密度高度・0℃高度・推定雲高などを表示するため</li>
+  <li>登録地点を保存し、アプリやウィジェットで再表示するため</li>
+</ul>
+
+<h2>3. 外部サービスへの送信</h2>
+<p>機能を提供するため、地点の緯度・経度を次の外部サービスへ送信します。氏名、メールアドレス、端末を識別する情報は送信しません。</p>
+<div class="scroll">
+<table>
+  <tr><th>送信先</th><th>送信する情報</th><th>目的</th></tr>
+  <tr><td>国土地理院 標高API</td><td>緯度・経度</td><td>地点の標高の取得</td></tr>
+  <tr><td>Apple WeatherKit</td><td>緯度・経度</td><td>気象データ・日の出日の入りなどの取得</td></tr>
+</table>
+</div>
+<p>WeatherKitによる情報の取り扱いは <a href="https://www.apple.com/legal/privacy/jp/">Appleのプライバシーポリシー</a> に従います。気象データの提供元については <a href="https://weatherkit.apple.com/legal-attribution.html">Apple Weatherのデータ提供元</a> をご覧ください。</p>
+
+<h2>4. 収集しない情報</h2>
+<ul>
+  <li>氏名、メールアドレス、電話番号などの個人情報</li>
+  <li>広告識別子、利用状況の解析データ</li>
+  <li>利用者の位置の履歴</li>
+</ul>
+<p>本アプリには、広告配信や行動解析のための第三者SDKは組み込まれていません。</p>
+
+<h2>5. 第三者への提供</h2>
+<p>開発者が利用者の情報を取得することはなく、したがって第三者へ販売・提供することもありません。上記3の送信は、機能の提供に必要な範囲に限られます。</p>
+
+<h2>6. 情報の保存と削除</h2>
+<p>登録地点は、アプリ内で個別に削除できます。本アプリをアンインストールすると、端末内に保存されたデータは削除されます。</p>
+
+<h2>7. お子様のプライバシー</h2>
+<p>本アプリは、個人情報を収集しません。お子様が利用する場合も、収集される個人情報はありません。</p>
+
+<h2>8. 本ポリシーの変更</h2>
+<p>機能の追加などに伴い、本ポリシーを変更することがあります。変更後の内容は、このページに掲載した時点から効力を生じます。</p>
+
+<h2>9. お問い合わせ</h2>
+<p>本ポリシーに関するお問い合わせは、下記までご連絡ください。</p>
+<ul>
+  <li>開発者:<span class="ph">CopterSkyService</span></li>
+  <li>メール:<span class="ph">coptergear@icloud.com</span></li>
+</ul>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">制定日:2026年11月13日 / 最終更新日:2026年11月13日</div>
+</footer>
+</body>
+</html>
