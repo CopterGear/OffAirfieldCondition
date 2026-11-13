@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>サポート | 場外状況</title>
+<meta name="description" content="場外状況の使い方、よくある質問、お問い合わせ先">
+<style>
+:root{
+  --ink:#16263d; --muted:#53627a; --paper:#f5f7fa; --panel:#ffffff;
+  --line:#d5dce6; --accent:#1d5f94; --mark:#fff3c4;
+  --font:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#e6ecf5; --muted:#9fb0c7; --paper:#0f1826; --panel:#16233a; --line:#2a3a55; --accent:#7db7e8; --mark:#5a4a12;}
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);line-height:1.85;font-size:16px;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+header{background:var(--ink);color:var(--paper);padding:44px 20px 36px}
+@media (prefers-color-scheme:dark){header{background:#0a111d;color:#e6ecf5;border-bottom:1px solid var(--line)}}
+.wrap{max-width:720px;margin:0 auto}
+header p{margin:0 0 6px;font-size:.9rem;opacity:.8}
+h1{margin:0;font-size:1.7rem;line-height:1.35;font-weight:700}
+main{padding:32px 20px 56px}
+.lead{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);padding:16px 18px;border-radius:6px;margin:0 0 36px}
+h2{font-size:1.15rem;margin:40px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+p,li{max-width:40em}
+ul{padding-left:1.3em}
+li{margin:4px 0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ph{background:var(--mark);padding:0 4px;border-radius:3px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:10px 0}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style-position:inside}
+details[open] summary{border-bottom:1px solid var(--line)}
+details > :not(summary){margin:12px 16px}
+details ul{margin-left:16px;margin-right:16px}
+footer{padding:0 20px 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p>場外状況</p>
+    <h1>サポート</h1>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<p class="lead">場外状況は、地図や座標で選んだ地点の標高と気象データから、気圧高度・密度高度・0℃高度・推定雲高などを表示するアプリです。使い方や困ったときの対処は、下記をご覧ください。</p>
+
+<h2>はじめかた</h2>
+<ul>
+  <li>「地点情報」タブで、地図をタップするか、緯度・経度を入力して地点を選びます。</li>
+  <li>選んだ地点の標高と今後24時間の気象、高度情報が、1時間ごとの横スクロール表示で出ます。</li>
+  <li>よく使う地点は「名前を付けて保存」で登録できます。登録した地点は、離着陸とウィジェットで使えます。</li>
+</ul>
+
+<h2>よくある質問</h2>
+
+<details>
+  <summary>日本国外の地点は使えますか?</summary>
+  <p>現在は日本国内の地点のみ対応しています。国外の地点を選ぶと、国内の地点を選ぶよう案内が出ます。</p>
+</details>
+
+<details>
+  <summary>気圧高度・密度高度・0℃高度とは何ですか?</summary>
+  <ul>
+    <li><strong>気圧高度</strong>:標準気圧(1013.25hPa)を基準にしたときの、その地点の気圧に相当する高度です。</li>
+    <li><strong>密度高度</strong>:気圧高度に気温の影響を加えた高度です。値が大きいほど空気が薄く、機体の性能が下がる目安になります。</li>
+    <li><strong>0℃高度</strong>:気温が0℃になる高度の目安です。</li>
+  </ul>
+  <p>いずれも、地点の標高(国土地理院)と、1時間ごとの気圧・気温(Apple Weather)から算出しています。単位はft(フィート)です。</p>
+</details>
+
+<details>
+  <summary>推定雲高とは何ですか?</summary>
+  <p>気温と露点、雲量から計算した、雲底高度(地表からの高さ)の目安です。雲量が少ないときは「なし」と表示します。実測値ではないため、実際の雲の高さとは異なることがあります。</p>
+</details>
+
+<details>
+  <summary>地点を登録するには?</summary>
+  <p>「地点情報」タブで地点を選んだあと、「名前を付けて保存」から名前を入力して保存します。保存するときに標高を取得するため、通信できる状態で操作してください。登録できる件数には上限があり、画面の下部に現在の登録数が出ます。</p>
+</details>
+
+<details>
+  <summary>登録地点を削除するには?</summary>
+  <p>登録地点の一覧で、行の右側にあるゴミ箱ボタンを押すか、行を左へスワイプして削除します。確認のメッセージが出ます。</p>
+</details>
+
+<details>
+  <summary>離着陸の使い方を教えてください</summary>
+  <p>先に、離陸地点と着陸地点を登録しておきます。「離着陸」タブで地点と時刻を選び、「計算する」を押すと、指定した時刻の前後1時間を含む気象・高度情報が、2地点で横並びに表示されます。</p>
+  <ul>
+    <li>指定できる日時は、現在から約9日先までです。</li>
+    <li>過去の日時は指定できません。</li>
+  </ul>
+</details>
+
+<details>
+  <summary>ウィジェットを追加するには?</summary>
+  <ul>
+    <li>ホーム画面を長押しして、左上の「+」から「場外状況」を選び、サイズ(小・中・大)を決めて追加します。</li>
+    <li>追加したウィジェットを長押しして「ウィジェットを編集」を選び、表示する地点を選びます。地点は、あらかじめ登録しておく必要があります。</li>
+  </ul>
+</details>
+
+<details>
+  <summary>ウィジェットの内容が更新されません</summary>
+  <p>ウィジェットの更新間隔は、iOSが電池や通信の状況に応じて決めるため、一定の間隔で更新される保証はありません。次をお試しください。</p>
+  <ul>
+    <li>ウィジェットを一度削除して、追加し直す</li>
+    <li>端末の通信状態を確認する</li>
+    <li>低電力モードをオフにする</li>
+  </ul>
+</details>
+
+<details>
+  <summary>「気象データの取得に失敗しました」と表示されます</summary>
+  <ul>
+    <li>Wi-Fiまたはモバイル通信につながっているか確認してください。</li>
+    <li>しばらく待ってから、もう一度お試しください。</li>
+    <li>解消しない場合は、アプリを再起動してください。</li>
+  </ul>
+</details>
+
+<details>
+  <summary>「現在地」ボタンが使えません</summary>
+  <p>端末の「設定」アプリで、「プライバシーとセキュリティ」>「位置情報サービス」を開き、場外状況 の許可を「このAppの使用中のみ許可」にしてください。現在地を使わなくても、地図のタップや座標入力で地点を選べます。</p>
+</details>
+
+<details>
+  <summary>表示される数値は、実際のフライトに使えますか?</summary>
+  <p>本アプリの情報は、参考値です。実際のフライトでは、公式の航空気象情報(METAR・TAFなど)や現地の状況を必ず確認し、ご自身の責任で判断してください。</p>
+</details>
+
+<h2>お問い合わせ</h2>
+<p>不具合のご報告やご要望は、メールでお知らせください。お使いの端末の機種、iOSのバージョン、症状(できれば操作の手順と画面の状況)を書いていただくと、確認がスムーズです。</p>
+<ul>
+  <li>メール:<span class="ph">coptergear@icloud.com</span></li>
+</ul>
+
+<h2>関連情報</h2>
+<ul>
+  <li><a href="privacy_policy.html">プライバシーポリシー</a></li>
+  <li>標高データ:国土地理院 / 気象データ:<a href="https://weatherkit.apple.com/legal-attribution.html">Apple Weather</a></li>
+</ul>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">場外状況 サポートページ</div>
+</footer>
+</body>
+</html>
