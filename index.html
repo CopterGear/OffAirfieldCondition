@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>場外状況 | 飛ばす前に、空気の濃さを知る</title>
+<meta name="description" content="地図や座標で選んだ地点の標高と気象から、気圧高度・密度高度・0℃高度・推定雲高を24時間分表示。フライトプランとウィジェットにも対応した、フライト前の確認アプリ。">
+<meta property="og:title" content="場外状況">
+<meta property="og:description" content="飛ばす前に、空気の濃さを知る。気圧高度・密度高度を地点ごとにチェック。">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --ink:#10233a; --muted:#52627a; --sky:#e8f0f7; --panel:#ffffff; --line:#cbd8e5;
+  --blue:#1f5f96; --signal:#c8470a; --onink:#f3f7fb;
+  --font:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#e8eef6; --muted:#9fb1c8; --sky:#0d1624; --panel:#142238; --line:#27385350; --blue:#7db7e8; --signal:#ff9a57; --onink:#0d1624;}
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--font);line-height:1.8;font-size:16px;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+a{color:var(--blue);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.name{margin:0 0 28px;font-size:.95rem;font-weight:600;color:var(--muted)}
+h1{margin:0;font-size:clamp(2.1rem,6.4vw,3.9rem);line-height:1.22;letter-spacing:-.02em;font-weight:800;max-width:14em}
+.sub{margin:24px 0 32px;max-width:32em;font-size:1.05rem;color:var(--muted)}
+.cta{display:inline-block;background:var(--ink);color:var(--onink);padding:13px 26px;border-radius:999px;font-weight:700;text-decoration:none}
+.cta:hover{opacity:.9}
+.note{margin:12px 0 0;font-size:.85rem;color:var(--muted)}
+.ph{background:#fff3c4;color:#10233a;padding:0 4px;border-radius:3px}
+
+/* sample strip */
+.strip{margin:56px 0 0}
+.strip figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+table.sample{border-collapse:collapse;width:100%;min-width:620px;font-variant-numeric:tabular-nums;text-align:center}
+.sample th,.sample td{padding:9px 10px;font-size:.92rem;border-bottom:1px solid var(--line);white-space:nowrap}
+.sample tr:last-child th,.sample tr:last-child td{border-bottom:0}
+.sample thead th{font-size:.85rem;color:var(--muted);font-weight:600}
+.sample tbody th{text-align:left;font-weight:600;color:var(--muted);font-size:.82rem;position:sticky;left:0;background:var(--panel)}
+.sample tr.da th,.sample tr.da td{background:color-mix(in srgb,var(--signal) 12%,var(--panel));color:var(--signal);font-weight:800;font-size:1.02rem}
+.sample thead th:first-child{position:sticky;left:0;background:var(--panel)}
+
+/* sections */
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{margin:0 0 28px;font-size:1.5rem;line-height:1.4}
+.row{display:grid;grid-template-columns:200px 1fr;gap:8px 32px;padding:22px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0;padding-top:0}
+.row h3{margin:0;font-size:1.05rem;line-height:1.5}
+.row p{margin:0 0 8px;color:var(--muted)}
+.row ul{margin:6px 0 0;padding-left:1.2em;color:var(--muted)}
+@media (max-width:640px){.row{grid-template-columns:1fr}}
+
+.sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
+.size{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.size b{display:block;margin-bottom:4px}
+.size span{color:var(--muted);font-size:.92rem}
+
+.fine{font-size:.88rem;color:var(--muted)}
+.fine li{margin:5px 0}
+footer{padding:40px 0 56px;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="name">場外状況</p>
+    <h1>飛ばす前に、空気の濃さを知る。</h1>
+    <p class="sub">地図をタップするか座標を入れるだけで、その地点の標高と今後24時間の気象から、気圧高度・密度高度・0℃高度を1時間ごとに表示します。飛行場の外で飛ばす人のための、フライト前の確認アプリです。</p>
+    <a class="cta" href="#"><span class="ph">App Storeで入手</span></a>
+    <p class="note">iPhone / iPad 対応・日本国内の地点で利用できます</p>
+
+    <figure class="strip">
+      <div class="tablewrap">
+        <table class="sample">
+          <thead>
+            <tr><th scope="col"></th><th scope="col">9時</th><th scope="col">10時</th><th scope="col">11時</th><th scope="col">12時</th><th scope="col">13時</th><th scope="col">14時</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">気温</th><td>24°</td><td>26°</td><td>28°</td><td>30°</td><td>31°</td><td>31°</td></tr>
+            <tr><th scope="row">風</th><td>4kt</td><td>5kt</td><td>6kt</td><td>8kt</td><td>9kt</td><td>9kt</td></tr>
+            <tr><th scope="row">気圧高度</th><td>420 ft</td><td>410 ft</td><td>390 ft</td><td>380 ft</td><td>390 ft</td><td>410 ft</td></tr>
+            <tr class="da"><th scope="row">密度高度</th><td>1,060 ft</td><td>1,420 ft</td><td>1,760 ft</td><td>2,120 ft</td><td>2,280 ft</td><td>2,330 ft</td></tr>
+            <tr><th scope="row">0℃高度</th><td>12,400 ft</td><td>12,900 ft</td><td>13,400 ft</td><td>13,900 ft</td><td>14,200 ft</td><td>14,200 ft</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figcaption>表示のイメージです(数値は例)。昼に向けて気温が上がると、密度高度も上がっていきます。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>特長</h2>
+
+    <div class="row">
+      <h3>どこでも地点を選べる</h3>
+      <div>
+        <p>空港や飛行場でなくても、河川敷、山、練習場など、飛ばしたい場所をそのまま指定できます。</p>
+        <ul>
+          <li>地図(標準・航空写真)をタップ</li>
+          <li>緯度・経度を入力(10進数・度分秒)</li>
+          <li>現在地ボタンで、今いる場所から確認</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>密度高度を自動で計算</h3>
+      <div>
+        <p>国土地理院の標高と、気圧・気温から、気圧高度と密度高度をft単位で1時間ごとに算出します。高温の日や標高の高い場所で、機体の性能がどれだけ落ちそうかの目安になります。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>24時間を横スクロールで</h3>
+      <div>
+        <p>Apple純正の天気アプリのような横並びの表示で、次の情報を一度に見渡せます。</p>
+        <ul>
+          <li>天気、降水確率、気温、露点</li>
+          <li>風向(矢印)と風速(kt)</li>
+          <li>気圧(inHg)、視程、降水量</li>
+          <li>推定雲高、気圧高度、密度高度、0℃高度</li>
+          <li>日の出・日の入り、月の出・月の入り、月齢と輝面率(時刻の位置に表示)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>離陸と着陸を並べて比較</h3>
+      <div>
+        <p>フライトプランでは、離陸地点と着陸地点、それぞれの時刻を選ぶだけ。指定時刻の前後1時間を含む条件が、2地点で横並びに表示されます。本日から約9日先までの予報に対応しています。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>よく使う地点を登録</h3>
+      <div>
+        <p>名前を付けて保存すれば、名前で検索してワンタップで呼び出せます。標高は保存時に記録するので、あとからの表示も軽快です。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3>ホーム画面のウィジェット</h3>
+      <div>
+        <p>登録した地点を選んで、ホーム画面に今の条件を表示できます。</p>
+        <div class="sizes">
+          <div class="size"><b>小</b><span>密度高度と天気をコンパクトに表示</span></div>
+          <div class="size"><b>中</b><span>現在の状況表示</span></div>
+          <div class="size"><b>大</b><span>5時間先の情報表示</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>こんな場面に</h2>
+    <ul>
+      <li>ドローンや模型飛行機を飛ばす前に、現地の風と密度高度を確認したい</li>
+      <li>山間部や標高の高い場所での、フライト性能を事前に知りたい</li>
+      <li>複数のフライトポイントの条件を、手軽に比べたい</li>
+      <li>日出・日入、月の状態まで含めて計画を立てたい</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>ご利用にあたって</h2>
+    <ul class="fine">
+      <li>現在は日本国内の地点のみ対応しています。</li>
+      <li>推定雲高・0℃高度は、気温(・露点)から算出した目安値で、実測値ではありません。輝面率は簡易な天文計算による近似値です。</li>
+      <li>本アプリの情報は参考値です。実際のフライトでは、公式の航空気象情報(METAR・TAFなど)や現地の状況を必ず確認し、ご自身の責任で判断してください。</li>
+      <li>ウィジェットの更新間隔はiOSの仕様により変わり、一定の間隔は保証されません。</li>
+      <li>標高:国土地理院 / 気象:<a href="https://weatherkit.apple.com/legal-attribution.html">Apple Weather</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="フッター">
+      <a href="support.html">サポート</a>
+      <a href="privacy_policy.html">プライバシーポリシー</a>
+    </nav>
+    <div>© 2026 <span class="ph">CopterSkyService</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
